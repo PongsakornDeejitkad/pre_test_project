@@ -1,6 +1,1 @@
-model/training_model/best_param/model.pkl
-model/training_model/encoders/label_encoders.pkl
-model/training_model/encoders/le_target.pkl
-model/training_model/predictive_model/__pycache__/clothing_recommender.cpython-312.pyc
-utils/__pycache__/__init__.cpython-312.pyc
-utils/__pycache__/weather.cpython-312.pyc
+
