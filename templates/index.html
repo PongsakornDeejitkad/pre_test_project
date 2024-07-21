@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Shop</title>
+</head>
+<body>
+    <h1>Welcome to our Clothing Shop</h1>
+    
+    <form method="POST">
+        <label for="customer_input">What is your preferred style of clothing?</label>
+        <input type="text" id="customer_input" name="customer_input" required>
+        <br><br>
+
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" required>
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if customer_input %}
+        <h2>Results:</h2>
+        <p><strong>Your Query:</strong> {{ customer_input }}</p>
+        <p><strong>Location:</strong> {{ location }}</p>
+        <p><strong>Current Weather:</strong> {{ current_weather }}</p>
+        <p><strong>Recommended Products:</strong>{{ recommended_product }}</p>
+    {% endif %}
+</body>
+</html>
