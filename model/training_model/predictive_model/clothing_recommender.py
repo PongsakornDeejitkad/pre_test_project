@@ -1,9 +1,10 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 import joblib
+import numpy as np
 
 class clothing_recommender:
     def __init__(self):
@@ -12,6 +13,8 @@ class clothing_recommender:
         self.label_encoders = {}
         self.le_target = LabelEncoder()
         self.model = RandomForestClassifier(n_estimators=100, random_state=42)
+        self.best_score = -np.inf
+        self.best_model = None
 
     def load_data(self):
         self.df = pd.read_csv(self.data_path)
@@ -48,8 +51,7 @@ class clothing_recommender:
         return self.le_target.inverse_transform(prediction)[0]
     
     def save_model(self, model_path, encoders_path):
-        # Ensure paths are correct and exist
-        joblib.dump(self.model, model_path + 'model.pkl')
+        joblib.dump(self.best_model, model_path + 'model.pkl')
         joblib.dump(self.le_target, encoders_path + 'le_target.pkl')
         joblib.dump(self.label_encoders, encoders_path + 'label_encoders.pkl')
     
@@ -58,3 +60,13 @@ class clothing_recommender:
         self.model = joblib.load(model_path + 'model.pkl')
         self.le_target = joblib.load(encoders_path + 'le_target.pkl')
         self.label_encoders = joblib.load(encoders_path + 'label_encoders.pkl')
+
+    def cross_validate(self, X, y, cv=5):
+        scores = cross_val_score(self.model, X, y, cv=cv)
+        mean_score = scores.mean()
+        print(f'Cross-validation scores: {scores}')
+        print(f'Mean cross-validation score: {mean_score}')
+        if mean_score > self.best_score:
+            self.best_score = mean_score
+            self.best_model = self.model
+        print(f'Best cross-validation score: {self.best_score}')

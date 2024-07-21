@@ -1,6 +1,6 @@
 style_preference,favorite_season,fabric_preference,pattern_preference,weather_today,recommended_clothing_items
 Casual,Summer,Cotton,Plain,Hot and humid,Casual Set
-Formal,Spring,Silk,None,Cool and rainy,Formal Set
+Formal,Spring,Silk,,Cool and rainy,Formal Set
 Sportswear,Winter,Polyester,Stripes,Mild and variable,Sports Set
 Bohemian,Autumn,Linen,Floral,Varies by region,Bohemian Set
 Streetwear,Summer,Denim,Graffiti,Temperate,Streetwear Set
