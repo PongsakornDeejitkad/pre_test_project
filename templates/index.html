@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clothing Shop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Welcome to our Clothing Shop</h1>
     
-    <form method="POST">
+    <form id="clothingForm" method="POST">
         <label for="customer_input">What is your preferred style of clothing?</label>
         <input type="text" id="customer_input" name="customer_input" required>
         <br><br>
@@ -20,12 +21,22 @@
         <input type="submit" value="Submit">
     </form>
 
+    <div id="loader" class="loader" style="display: none;"></div>
+
     {% if customer_input %}
-        <h2>Results:</h2>
-        <p><strong>Your Query:</strong> {{ customer_input }}</p>
-        <p><strong>Location:</strong> {{ location }}</p>
-        <p><strong>Current Weather:</strong> {{ current_weather }}</p>
-        <p><strong>Recommended Products:</strong>{{ recommended_product }}</p>
+        <div class="results">
+            <h2>Results:</h2>
+            <p><strong>Your Query:</strong> {{ customer_input }}</p>
+            <p><strong>Location:</strong> {{ location }}</p>
+            <p><strong>Current Weather:</strong> {{ current_weather }}</p>
+            <p><strong>Recommended Products:</strong> {{ recommended_product }}</p>
+        </div>
     {% endif %}
+
+    <script>
+        document.getElementById('clothingForm').onsubmit = function() {
+            document.getElementById('loader').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
