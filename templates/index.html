@@ -10,12 +10,12 @@
     <h1>Welcome to our Clothing Shop</h1>
     
     <form id="clothingForm" method="POST">
-        <label for="customer_input">What is your preferred style of clothing?</label>
-        <input type="text" id="customer_input" name="customer_input" required>
+        <label for="customer_input">What statements provided by your customers?</label>
+        <input type="text" id="customer_input" name="customer_input" required  placeholder="e.g., I prefer casual and relaxed outfits for summer.">
         <br><br>
 
-        <label for="location">Location</label>
-        <input type="text" id="location" name="location" required>
+        <label for="location">What is your current location?</label>
+        <input type="text" id="location" name="location" required placeholder="e.g., London, Thailand">
         <br><br>
 
         <input type="submit" value="Submit">
@@ -30,12 +30,27 @@
             <p><strong>Location:</strong> {{ location }}</p>
             <p><strong>Current Weather:</strong> {{ current_weather }}</p>
             <p><strong>Recommended Products:</strong> {{ recommended_product }}</p>
+            
+            <div class="feedback-buttons">
+                <button id="buy-button" class="feedback-button">Buy</button>
+                <button id="not-interested-button" class="feedback-button">Not Interested</button>
+            </div>
         </div>
     {% endif %}
 
     <script>
         document.getElementById('clothingForm').onsubmit = function() {
             document.getElementById('loader').style.display = 'block';
+        }
+        
+        document.getElementById('buy-button').onclick = function() {
+            alert('Thank you for your purchase!');
+            // Add your code to handle the purchase action
+        }
+        
+        document.getElementById('not-interested-button').onclick = function() {
+            alert('Thank you for your feedback!');
+            // Add your code to handle the not interested action
         }
     </script>
 </body>

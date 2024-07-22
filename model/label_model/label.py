@@ -6,7 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 class label_transformers:
     def __init__(self):
-        self.df = pd.read_csv('../../data/products.csv')
+        self.df = pd.read_csv('data/products.csv')
         self.features = self.df.columns
         self.clothes_features = self.get_unique_options(self.features[:-1])
         self.weather_features = self.get_unique_options(self.features[-2:-1])
